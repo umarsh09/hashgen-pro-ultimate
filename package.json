@@ -1,0 +1,27 @@
+{
+  "name": "hashgen-pro-ultimate",
+  "version": "1.0.0",
+  "description": "Premium hashtag generation platform - Multi-page website",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0",
+    "framer-motion": "^11.0.0",
+    "lucide-react": "^0.263.1",
+    "clsx": "^2.1.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.3",
+    "vite": "^5.4.10"
+  },
+  "keywords": ["hashtag", "generator", "social-media", "react", "multi-page"],
+  "author": "HashGen Pro Team",
+  "license": "MIT"
+}
