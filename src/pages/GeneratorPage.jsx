@@ -1,46 +1,79 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Hash, Copy, Check, Zap, Building2 } from 'lucide-react'
+import { Hash, Copy, Check, Zap, Building2, Loader2, Sparkles } from 'lucide-react'
+import { generateHashtags as generateHashtagsAI, generateContent } from '../services/deepseekService'
 
 const GeneratorPage = () => {
   const [inputText, setInputText] = useState('')
   const [hashtags, setHashtags] = useState([])
   const [copiedIndex, setCopiedIndex] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const [platform, setPlatform] = useState('instagram')
+  const [generatedContent, setGeneratedContent] = useState('')
 
-  const constructionKeywords = [
-    'construction', 'build', 'architecture', 'engineering', 
-    'contractor', 'renovation', 'design', 'project',
-    'building', 'constructionlife', 'constructionmanager',
-    'site', 'progress', 'blueprint', 'masonry', 'carpentry',
-    'electrical', 'plumbing', 'concrete', 'foundation'
+  const platforms = [
+    { id: 'instagram', name: 'Instagram', icon: '📸' },
+    { id: 'twitter', name: 'Twitter', icon: '🐦' },
+    { id: 'linkedin', name: 'LinkedIn', icon: '💼' },
+    { id: 'tiktok', name: 'TikTok', icon: '🎵' },
+    { id: 'facebook', name: 'Facebook', icon: '📘' },
+    { id: 'youtube', name: 'YouTube', icon: '🎥' }
   ]
 
-  const generateHashtags = () => {
+  const generateHashtags = async () => {
     if (!inputText.trim()) return
 
-    const words = inputText.toLowerCase().split(/\s+/)
+    setLoading(true)
+    setError(null)
+
+    try {
+      // Generate hashtags using DeepSeek AI
+      const generatedHashtags = await generateHashtagsAI(inputText, platform, 15)
+      setHashtags(generatedHashtags)
+
+      // Also generate enhanced content description
+      const content = await generateContent(inputText, 'professional')
+      setGeneratedContent(content)
+    } catch (err) {
+      console.error('Error generating hashtags:', err)
+      setError('Failed to generate hashtags. Please try again.')
+
+      // Fallback to basic generation
+      const fallbackHashtags = generateFallbackHashtags(inputText)
+      setHashtags(fallbackHashtags)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const generateFallbackHashtags = (text) => {
+    const constructionKeywords = [
+      'construction', 'build', 'architecture', 'engineering',
+      'contractor', 'renovation', 'design', 'project',
+      'building', 'constructionlife', 'constructionmanager',
+      'site', 'progress', 'blueprint', 'masonry', 'carpentry',
+      'electrical', 'plumbing', 'concrete', 'foundation'
+    ]
+
+    const words = text.toLowerCase().split(/\s+/)
     const generated = []
-    
-    // Add main construction hashtags
+
     generated.push('#construction', '#building', '#architecture')
-    
-    // Add hashtags based on input words
+
     words.forEach(word => {
       if (word.length > 3) {
         generated.push(`#${word}`)
       }
     })
 
-    // Add some popular construction hashtags
     constructionKeywords.forEach(keyword => {
       if (Math.random() > 0.7) {
         generated.push(`#${keyword}`)
       }
     })
 
-    // Remove duplicates and limit to 15
-    const uniqueHashtags = [...new Set(generated)].slice(0, 15)
-    setHashtags(uniqueHashtags)
+    return [...new Set(generated)].slice(0, 15)
   }
 
   const copyToClipboard = async (text, index) => {
@@ -90,25 +123,90 @@ const GeneratorPage = () => {
             <Building2 className="h-5 w-5 text-blue-400" />
             <h2 className="text-xl font-semibold text-white">Project Description</h2>
           </div>
-          
+
+          {/* Platform Selector */}
+          <div className="mb-4">
+            <label className="text-sm text-gray-300 mb-2 block">Select Platform</label>
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
+              {platforms.map((p) => (
+                <motion.button
+                  key={p.id}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setPlatform(p.id)}
+                  className={`p-3 rounded-lg border-2 transition-all ${
+                    platform === p.id
+                      ? 'border-blue-500 bg-blue-500/20'
+                      : 'border-gray-700 bg-gray-800/50 hover:border-gray-600'
+                  }`}
+                >
+                  <div className="text-2xl mb-1">{p.icon}</div>
+                  <div className="text-xs text-gray-300">{p.name}</div>
+                </motion.button>
+              ))}
+            </div>
+          </div>
+
           <textarea
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             placeholder="Describe your construction project, materials used, location, or special features..."
             className="w-full h-32 bg-gray-800/50 border border-gray-700 rounded-xl p-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
           />
-          
+
+          {error && (
+            <div className="mt-3 p-3 bg-red-500/20 border border-red-500 rounded-lg text-red-300 text-sm">
+              {error}
+            </div>
+          )}
+
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={generateHashtags}
-            disabled={!inputText.trim()}
+            disabled={!inputText.trim() || loading}
             className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-4 rounded-xl font-semibold text-lg mt-4 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
           >
-            <Zap className="h-5 w-5" />
-            <span>Generate Hashtags</span>
+            {loading ? (
+              <>
+                <Loader2 className="h-5 w-5 animate-spin" />
+                <span>Generating with AI...</span>
+              </>
+            ) : (
+              <>
+                <Sparkles className="h-5 w-5" />
+                <span>Generate with AI</span>
+              </>
+            )}
           </motion.button>
         </motion.div>
+
+        {/* Generated Content Section */}
+        {generatedContent && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="glass-effect rounded-2xl p-6 mb-8"
+          >
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-bold text-white">AI-Generated Caption</h2>
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => copyToClipboard(generatedContent, 'content')}
+                className="p-2 rounded-lg bg-gray-700/50 hover:bg-gray-600/50 transition-colors"
+              >
+                {copiedIndex === 'content' ? (
+                  <Check className="h-4 w-4 text-green-400" />
+                ) : (
+                  <Copy className="h-4 w-4 text-gray-400" />
+                )}
+              </motion.button>
+            </div>
+            <p className="text-gray-200 leading-relaxed">{generatedContent}</p>
+          </motion.div>
+        )}
 
         {/* Results Section */}
         {hashtags.length > 0 && (
