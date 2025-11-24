@@ -8,12 +8,13 @@ HashGen Pro is the **ultimate AI-powered hashtag generator** built for **market 
 
 ### ✨ Key Features
 
-- 🤖 **AI-Powered Generation** - Advanced AI algorithms for smart hashtag suggestions
-- 📊 **Dashboard Analytics** - Track performance and engagement metrics
-- 🎨 **Premium UI/UX** - Modern design with Framer Motion & GSAP animations
+- 🤖 **DeepSeek AI Integration** - Powered by DeepSeek AI for intelligent hashtag generation
+- ✨ **AI-Generated Captions** - Automatic social media caption generation
+- 📊 **Multi-Platform Support** - Instagram, Twitter, LinkedIn, TikTok, YouTube, Facebook
+- 🎯 **Smart Hashtag Analysis** - AI-powered hashtag effectiveness scoring
+- 🎨 **Premium UI/UX** - Modern design with Framer Motion animations
 - 💳 **Subscription System** - Free and Pro tier management
 - 🔐 **Secure Authentication** - JWT-based authentication system
-- 🌐 **Multi-Platform Support** - All 6 major social media platforms
 - 📱 **Fully Responsive** - Mobile-first design approach
 - ⚡ **High Performance** - 95+ Lighthouse performance score
 - 🎭 **Advanced Animations** - Scroll animations, micro-interactions, 3D effects
@@ -47,12 +48,13 @@ Before you begin, ensure you have:
 - Node.js (v16 or higher)
 - npm or yarn
 - Git
+- DeepSeek AI API Key (get it from [DeepSeek Platform](https://platform.deepseek.com/))
 
 ### Quick Start
 
-1. **Extract the project**
+1. **Clone the repository**
    ```bash
-   unzip hashgen-pro.zip
+   git clone https://github.com/yourusername/hashgen-pro.git
    cd hashgen-pro
    ```
 
@@ -63,14 +65,23 @@ Before you begin, ensure you have:
    yarn install
    ```
 
-3. **Start development server**
+3. **Configure environment variables**
+   ```bash
+   # Copy the example env file
+   cp .env.example .env
+
+   # Edit .env and add your DeepSeek AI API key
+   # VITE_DEEPSEEK_API_KEY=your_api_key_here
+   ```
+
+4. **Start development server**
    ```bash
    npm run dev
    # or
    yarn dev
    ```
 
-4. **Open your browser**
+5. **Open your browser**
    Navigate to `http://localhost:3000`
 
 ## 🏗️ Project Structure
@@ -116,11 +127,13 @@ hashgen-pro/
 - Call-to-action sections
 
 ### 2. Generator Page
-- Hashtag generation with AI
-- Description generation
+- **DeepSeek AI-powered** hashtag generation
+- Multi-platform support (Instagram, Twitter, LinkedIn, TikTok, YouTube, Facebook)
+- AI-generated social media captions
+- Smart hashtag suggestions based on content
 - Copy to clipboard functionality
-- Popular hashtags suggestions
-- Real-time generation
+- Real-time generation with loading states
+- Fallback generation for offline mode
 
 ### 3. Dashboard
 - Project analytics
@@ -174,19 +187,22 @@ yarn preview
 
 ### Environment Variables
 
-Create a `.env` file in the root directory:
+The project uses environment variables for configuration. Copy `.env.example` to `.env` and configure:
 
 ```env
-# API Configuration
-VITE_API_URL=your_api_url_here
-VITE_API_KEY=your_api_key_here
-
-# Authentication
-VITE_JWT_SECRET=your_jwt_secret_here
-
-# Analytics
-VITE_ANALYTICS_ID=your_analytics_id_here
+# DeepSeek AI Configuration
+VITE_DEEPSEEK_API_KEY=sk-your-api-key-here
+VITE_DEEPSEEK_API_URL=https://api.deepseek.com/v1
 ```
+
+**Getting Your DeepSeek API Key:**
+1. Visit [DeepSeek Platform](https://platform.deepseek.com/)
+2. Sign up or log in to your account
+3. Navigate to API Keys section
+4. Create a new API key
+5. Copy the key and add it to your `.env` file
+
+**Important:** Never commit your `.env` file to version control. The `.gitignore` file is configured to exclude it.
 
 ### Customization
 
