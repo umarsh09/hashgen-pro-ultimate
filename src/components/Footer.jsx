@@ -1,8 +1,16 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Hash, Twitter, Facebook, Linkedin } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
+  const supportLinks = [
+    { name: 'Pricing', path: '/pricing' },
+    { name: 'Documentation', path: '#' },
+    { name: 'Guides', path: '#' },
+    { name: 'API Status', path: '#' },
+  ]
+
   return (
     <motion.footer
       initial={{ opacity: 0 }}
@@ -22,7 +30,7 @@ const Footer = () => {
               <span className="text-white font-bold text-xl">HashGen Pro</span>
             </motion.div>
             <p className="text-gray-300 text-base">
-              Advanced construction management platform with AI-powered content generation tools for modern construction businesses.
+              AI-powered hashtag generation platform helping creators, marketers, and brands maximize their social media reach and engagement.
             </p>
             <div className="flex space-x-6">
               {[Twitter, Facebook, Linkedin].map((Icon, index) => (
@@ -44,7 +52,7 @@ const Footer = () => {
                   Solutions
                 </h3>
                 <ul className="mt-4 space-y-4">
-                  {['Construction', 'Marketing', 'Analytics', 'Automation'].map((item) => (
+                  {['Hashtag Generator', 'Marketing', 'Analytics', 'Automation'].map((item) => (
                     <li key={item}>
                       <a href="#" className="text-base text-gray-400 hover:text-white transition-colors">
                         {item}
@@ -58,11 +66,17 @@ const Footer = () => {
                   Support
                 </h3>
                 <ul className="mt-4 space-y-4">
-                  {['Pricing', 'Documentation', 'Guides', 'API Status'].map((item) => (
-                    <li key={item}>
-                      <a href="#" className="text-base text-gray-400 hover:text-white transition-colors">
-                        {item}
-                      </a>
+                  {supportLinks.map((item) => (
+                    <li key={item.name}>
+                      {item.path.startsWith('/') ? (
+                        <Link to={item.path} className="text-base text-gray-400 hover:text-white transition-colors">
+                          {item.name}
+                        </Link>
+                      ) : (
+                        <a href={item.path} className="text-base text-gray-400 hover:text-white transition-colors">
+                          {item.name}
+                        </a>
+                      )}
                     </li>
                   ))}
                 </ul>

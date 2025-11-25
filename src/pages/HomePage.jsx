@@ -6,9 +6,9 @@ import { Rocket, BarChart3, Zap, Shield, ArrowRight, Play } from 'lucide-react'
 const HomePage = () => {
   const features = [
     { icon: Rocket, title: 'AI-Powered Generation', description: 'Generate smart hashtags and descriptions using advanced AI algorithms' },
-    { icon: BarChart3, title: 'Construction Analytics', description: 'Track project performance and social media engagement metrics' },
+    { icon: BarChart3, title: 'Social Media Analytics', description: 'Track hashtag performance and social media engagement metrics' },
     { icon: Zap, title: 'Real-time Processing', description: 'Instant content generation with real-time optimization' },
-    { icon: Shield, title: 'Secure & Reliable', description: 'Enterprise-grade security for your construction data' },
+    { icon: Shield, title: 'Secure & Reliable', description: 'Enterprise-grade security for your social media content and data' },
   ]
 
   const stats = [
@@ -32,7 +32,7 @@ const HomePage = () => {
             </motion.h1>
             
             <motion.p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }}>
-              Advanced construction management platform with AI-powered content generation. Streamline your projects and enhance your social media presence.
+              AI-powered hashtag generation platform for creators and marketers. Boost your social media reach and maximize engagement with intelligent hashtag strategies.
             </motion.p>
 
             <motion.div className="flex flex-col sm:flex-row gap-4 justify-center items-center" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.8 }}>
@@ -67,10 +67,10 @@ const HomePage = () => {
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Powerful Features for{' '}
               <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
-                Construction Pros
+                Content Creators
               </span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">Everything you need to manage construction projects and create engaging content</p>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">Everything you need to generate viral hashtags and create engaging social media content</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -94,8 +94,8 @@ const HomePage = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }} className="bg-gradient-to-r from-blue-500/10 to-purple-600/10 rounded-3xl p-12 border border-white/10 backdrop-blur-sm">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Transform Your Construction Business?</h2>
-            <p className="text-xl text-gray-300 mb-8">Join thousands of construction professionals using HashGen Pro</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Transform Your Social Media Presence?</h2>
+            <p className="text-xl text-gray-300 mb-8">Join thousands of creators and marketers using HashGen Pro</p>
             <Link to="/register" className="inline-flex items-center space-x-2 bg-white text-gray-900 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-all duration-300 shadow-2xl">
               <span>Get Started Free</span>
               <ArrowRight className="h-5 w-5" />

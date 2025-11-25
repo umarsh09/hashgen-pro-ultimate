@@ -9,7 +9,7 @@ const PricingPage = () => {
       name: 'Starter',
       price: '$29',
       period: '/month',
-      description: 'Perfect for individuals and small teams',
+      description: 'Perfect for individual creators and influencers',
       features: [
         'Up to 100 hashtags/month',
         '5 projects',
@@ -24,7 +24,7 @@ const PricingPage = () => {
       name: 'Professional',
       price: '$79',
       period: '/month',
-      description: 'Ideal for growing construction businesses',
+      description: 'Ideal for growing brands and marketing teams',
       features: [
         'Unlimited hashtags',
         '50 projects',
@@ -41,7 +41,7 @@ const PricingPage = () => {
       name: 'Enterprise',
       price: 'Custom',
       period: 'pricing',
-      description: 'For large construction enterprises',
+      description: 'For large agencies and enterprises',
       features: [
         'Everything in Professional',
         'Unlimited projects',
@@ -73,7 +73,7 @@ const PricingPage = () => {
             </span>
           </h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Choose the perfect plan for your construction business. No hidden fees, cancel anytime.
+            Choose the perfect plan for your social media success. No hidden fees, cancel anytime.
           </p>
         </motion.div>
 

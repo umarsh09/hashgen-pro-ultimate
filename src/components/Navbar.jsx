@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Hash, Building2, User, BarChart3 } from 'lucide-react'
+import { Menu, X, Hash, Building2, User, BarChart3, DollarSign } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 
 const Navbar = () => {
@@ -11,6 +11,7 @@ const Navbar = () => {
     { name: 'Home', path: '/', icon: Hash },
     { name: 'Generator', path: '/generator', icon: Building2 },
     { name: 'Dashboard', path: '/dashboard', icon: BarChart3 },
+    { name: 'Pricing', path: '/pricing', icon: DollarSign },
   ]
 
   const isActivePath = (path) => location.pathname === path
