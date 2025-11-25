@@ -1,4 +1,3 @@
-cat > src/components/Navbar.jsx << 'EOF'
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Hash, Building2, User, BarChart3 } from 'lucide-react'
@@ -140,4 +139,3 @@ const Navbar = () => {
 }
 
 export default Navbar
-EOF

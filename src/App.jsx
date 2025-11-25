@@ -7,6 +7,9 @@ import GeneratorPage from './pages/GeneratorPage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import ConstructionDashboard from './pages/ConstructionDashboard'
+import PricingPage from './pages/PricingPage'
+import AboutPage from './pages/AboutPage'
+import NotFoundPage from './pages/NotFoundPage'
 import { MotionConfig } from 'framer-motion'
 
 function App() {
@@ -18,9 +21,12 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/generator" element={<GeneratorPage />} />
+            <Route path="/pricing" element={<PricingPage />} />
+            <Route path="/about" element={<AboutPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/dashboard" element={<ConstructionDashboard />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
           <Footer />
         </div>
