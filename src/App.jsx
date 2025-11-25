@@ -16,7 +16,7 @@ function App() {
   return (
     <MotionConfig reducedMotion="user">
       <Router>
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
+        <div className="min-h-screen bg-white">
           <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />
