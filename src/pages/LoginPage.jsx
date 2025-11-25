@@ -12,7 +12,7 @@ const LoginPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('Login data:', formData)
+    // TODO: Implement login API call
   }
 
   const handleChange = (e) => {
@@ -91,7 +91,7 @@ const LoginPage = () => {
 
           <div className="mt-6 text-center">
             <p className="text-gray-300">
-              Don't have an account?{' '}
+              Don&apos;t have an account?{' '}
               <Link to="/register" className="text-blue-400 hover:text-blue-300 font-semibold">
                 Sign up
               </Link>

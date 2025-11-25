@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Hash, Copy, Check, Zap, Building2, Loader2, Sparkles } from 'lucide-react'
+import { Hash, Copy, Check, Building2, Loader2, Sparkles } from 'lucide-react'
 import { generateHashtags as generateHashtagsAI, generateContent } from '../services/deepseekService'
 
 const GeneratorPage = () => {

@@ -1,4 +1,3 @@
-cat > src/components/Footer.jsx << 'EOF'
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Hash, Twitter, Facebook, Linkedin } from 'lucide-react'
@@ -112,4 +111,3 @@ const Footer = () => {
 }
 
 export default Footer
-EOF
