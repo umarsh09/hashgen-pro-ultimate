@@ -24,11 +24,47 @@
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
-  
+
   .gradient-bg {
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
+  }
+
+  /* Fix for gradient text to ensure visibility across browsers */
+  .text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Enhanced gradient text support with proper vendor prefixes */
+  .bg-clip-text {
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+    -moz-background-clip: text !important;
+  }
+
+  .text-transparent {
+    -webkit-text-fill-color: transparent !important;
+    -moz-text-fill-color: transparent !important;
+    color: transparent !important;
+  }
+}
+
+/* Fallback for browsers that don't support background-clip: text */
+@supports not (background-clip: text) and not (-webkit-background-clip: text) {
+  .text-transparent {
+    color: #60a5fa !important;
+    -webkit-text-fill-color: #60a5fa !important;
+  }
+}
+
+/* Ensure gradients are properly displayed */
+@layer utilities {
+  .bg-gradient-to-r {
+    background-image: linear-gradient(to right, var(--tw-gradient-stops));
   }
 }
 
